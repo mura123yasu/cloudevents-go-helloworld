@@ -5,9 +5,9 @@ My first trial of cloud events sdk-go.
 ```sh
 git checkout https://github.com/mura123yasu/cloudevents-go-helloworld.git
 go mod download
-// start receiver
+# start receiver
 go run ./simple/receiver/main.go
-// start sender at another process
+# start sender at another process
 go run ./simple/sender/main.go
 ```
 
@@ -21,20 +21,20 @@ gcloud pubsub subscriptions create <YOUR PUBSUB SUBSCRIPTION> --topic=<YOUR PUBS
 
 ### Set env
 ```sh
-// required
+# required
 export GOOGLE_APPLICATION_CREDENTIALS=<YOUR CREDENTIAL>
 export GOOGLE_CLOUD_PROJECT=<YOUR GCP PROJECT>
-// optional
-export PUBSUB_TOPIC=<YOUR PUBSUB TOPIC> // default is "demo_cloudevents"
-export PUBSUB_SUBSCRIPTION=<YOUR PUBSUB SUBSCRIPTION> // default is "demo_cloudevents_subscriber"
+# optional
+export PUBSUB_TOPIC=<YOUR PUBSUB TOPIC> # default is "demo_cloudevents"
+export PUBSUB_SUBSCRIPTION=<YOUR PUBSUB SUBSCRIPTION> # default is "demo_cloudevents_subscriber"
 ```
 
 ### Run
 ```sh
 git checkout https://github.com/mura123yasu/cloudevents-go-helloworld.git
 go mod download
-// start receiver
+# start receiver
 go run ./pubsub/receiver/main.go
-// start sender at another process
+# start sender at another process
 go run ./pubsub/sender/main.go
 ```
