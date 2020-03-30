@@ -17,7 +17,7 @@ type envConfig struct {
 }
 
 // Basic data struct.
-type Example struct {
+type Model struct {
 	Sequence int    `json:"id"`
 	Message  string `json:"message"`
 }
@@ -45,7 +45,7 @@ func main() {
 	event := cloudevents.NewEvent(cloudevents.VersionV1)
 	event.SetType("com.cloudevents.sample.sent")
 	event.SetSource("github.com/cloudevents/sdk-go/cmd/samples/pubsub/sender/")
-	_ = event.SetData(&Example{
+	_ = event.SetData(&Model{
 		Sequence: 0,
 		Message:  "HELLO",
 	})

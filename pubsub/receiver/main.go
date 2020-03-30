@@ -13,16 +13,6 @@ import (
 	"github.com/kelseyhightower/envconfig"
 )
 
-/*
-To setup:
-gcloud pubsub topics create demo_cloudevents
-gcloud pubsub subscriptions create demo_cloudevents_subscriber --topic=demo_cloudevents
-To test:
-gcloud pubsub topics publish demo_cloudevents --message='{"Hello": "world"}'
-To fix a bad message:
-gcloud pubsub subscriptions pull --auto-ack demo_cloudevents_subscriber
-*/
-
 type envConfig struct {
 	ProjectID string `envconfig:"GOOGLE_CLOUD_PROJECT"`
 
@@ -31,7 +21,7 @@ type envConfig struct {
 	SubscriptionID string `envconfig:"PUBSUB_SUBSCRIPTION" default:"demo_cloudevents_subscriber" required:"true"`
 }
 
-type Example struct {
+type Model struct {
 	Sequence int    `json:"id"`
 	Message  string `json:"message"`
 }
@@ -41,7 +31,7 @@ func receive(ctx context.Context, event cloudevents.Event, resp *cloudevents.Eve
 
 	fmt.Printf("Transport Context: %+v\n", pscontext.TransportContextFrom(ctx))
 
-	data := &Example{}
+	data := &Model{}
 	if err := event.DataAs(data); err != nil {
 		fmt.Printf("Got Data Error: %s\n", err.Error())
 	}
